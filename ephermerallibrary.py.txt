@@ -1,0 +1,103 @@
+class EphemeralLibrary:
+
+    def __init__(self):
+        self.key_obtained = False
+        self.notes_collected = 0
+        self.illustration_mimicked = False
+        self.map_obtained = False
+
+    def start(self):
+        print("You stand before the Ephemeral Library, where knowledge appears as swiftly as it fades...")
+        self.pathway_choice()
+
+    def pathway_choice(self):
+        print("\nWhich book will you explore first?")
+        print("1: When Shadows Speak of Moonlit Songs")
+        print("2: Endless Echoes of Heartbeats")
+        print("3: Realms Beyond the Ink")
+        print("4: Speak with the Ghostly Librarian")
+        choice = input("> ")
+
+        if choice == "1":
+            self.cryptic_title_challenge()
+        elif choice == "2":
+            self.tale_of_two_lovers()
+        elif choice == "3":
+            self.animated_illustration()
+        elif choice == "4":
+            self.ghostly_librarian()
+        else:
+            print("Invalid choice. Choose again.")
+            self.pathway_choice()
+
+    def cryptic_title_challenge(self):
+        print("\nA riddle appears: 'When day becomes night, and songs turn to whispers, where do shadows go to hide?'")
+        answer = input("> ")
+
+        if "moonlight" in answer.lower():
+            print("Correct! You obtain a shimmering key.")
+            self.key_obtained = True
+        else:
+            print("That doesn't seem right. The book fades away...")
+        
+        self.pathway_choice()
+
+    def tale_of_two_lovers(self):
+        print("\nYou need to find the scattered notes. Where do you want to search?")
+        print("1: Another book")
+        print("2: Floating parchment")
+        print("3: Under a moving desk")
+
+        choice = input("> ")
+
+        if choice == "1" or choice == "2" or choice == "3":
+            self.notes_collected += 1
+            print(f"You found a note! You have collected {self.notes_collected} out of 3 notes.")
+
+        if self.notes_collected < 3:
+            self.tale_of_two_lovers()
+        else:
+            print("You've reunited all notes and a hidden staircase appears!")
+        
+        self.pathway_choice()
+
+    def animated_illustration(self):
+        print("\nYou see illustrations come to life. Do you want to mimic their actions?")
+        print("1: Yes")
+        print("2: No")
+
+        choice = input("> ")
+
+        if choice == "1":
+            print("The illustrations nod in approval. A hidden door appears, leading to a chamber.")
+            self.illustration_mimicked = True
+        else:
+            print("The illustrations seem disappointed...")
+        
+        self.pathway_choice()
+
+    def ghostly_librarian(self):
+        print("\nThe Ghostly Librarian asks, 'Some books want to be found, others wish to remain hidden. Why do you seek the tome?'")
+        print("1: To protect it.")
+        print("2: To gain knowledge.")
+        print("3: I'm not sure.")
+
+        choice = input("> ")
+
+        if choice == "1":
+            print("The librarian nods and hands you a map showing the tome's location.")
+            self.map_obtained = True
+        else:
+            print("That's not the right answer. The librarian fades away...")
+        
+        self.pathway_choice()
+
+    def check_completion(self):
+        if self.key_obtained and self.notes_collected == 3 and self.illustration_mimicked and self.map_obtained:
+            print("\nYou've successfully navigated through all challenges and secured the tome!")
+            return True
+        return False
+
+
+game = EphemeralLibrary()
+game.start()
